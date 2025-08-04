@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
+import React, { useState } from 'react';
+// import { useCart } from '../context/CartContext';
+
 // import Navbar from './nav/Navbar';
 import AddProductForm from './Admin/AddProductPage.jsx';
 import ProductListPage from './Customer/ProductList.jsx';
@@ -16,6 +19,8 @@ import ForgotPassPage from './pages/ForgotPassPage.jsx';
 import ResetPassPage from './pages/ResetPassPage.jsx';
 import CartPage from './pages/CartPage.jsx';
 import ReceiptPage from './pages/ReceiptPage.jsx';
+import CustomerPage from './pages/CustomerPage.jsx';
+import CheckoutSummaryPage from './pages/CheckoutSummaryPage.jsx';
 
 //context
 import { AuthProvider } from './context/AuthContext.jsx';
@@ -34,21 +39,24 @@ function App() {
           <Router>
             <NavbarRes />
             <Routes>
+              <Route path='/' element={<HomePage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/signup' element={<SignupPage />} />
               <Route path='/admin/signup' element={<SignupPageAdmin />} />
-              <Route path='/addproduct' element={<AddProductForm />} />
-              <Route path='/productsAdmin' element={<ProductsPage />} />
-              <Route path='/products' element={<ProductListPage />} />
-              <Route path='/admin' element={<AdminPage />} />
-              <Route path='/' element={<HomePage />} />
-              <Route path='/edit/:id' element={<EditproductPage />} />
               <Route path='/forgotpass' element={<ForgotPassPage />} />
               <Route
                 path='/reset-password/:token'
                 element={<ResetPassPage />}
               />
+              <Route path='/admin' element={<AdminPage />} />
+              <Route path='/addproduct' element={<AddProductForm />} />
+              <Route path='/edit/:id' element={<EditproductPage />} />
+              <Route path='/productsAdmin' element={<ProductsPage />} />
+              <Route path='/products' element={<ProductListPage />} />
+              <Route path='/customer' element={<CustomerPage />} />
+              {/* // checkout step pages*/}
               <Route path='/cart' element={<CartPage />} />
+              <Route path='/chkoutsummary' element={<CheckoutSummaryPage />} />
               <Route path='/receipt' element={<ReceiptPage />} />
             </Routes>
           </Router>

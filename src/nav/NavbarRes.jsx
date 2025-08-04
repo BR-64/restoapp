@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext.jsx';
 
 //icon
 import { FiShoppingCart } from 'react-icons/fi';
+
+//context
 import { useCart } from '../context/CartContext';
 
 const NavbarRes = () => {
@@ -34,9 +36,6 @@ const NavbarRes = () => {
             )}
             <Link to='/' className='hover:text-gray-300'>
               Home
-            </Link>
-            <Link to='/admin' className='hover:text-gray-300'>
-              Admin Page
             </Link>
             <Link to='/products' className='hover:text-gray-300'>
               Product List
@@ -103,9 +102,6 @@ const NavbarRes = () => {
           )}
           <Link to='/' className='hover:text-gray-300'>
             Home
-          </Link>
-          <Link to='/admin' className='hover:text-gray-300'>
-            Admin Page
           </Link>
           <Link to='/products' className='hover:text-gray-300'>
             Product List

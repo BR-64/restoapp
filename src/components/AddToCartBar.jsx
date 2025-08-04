@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
+// import './test.css';
+// import '@tailwindcss/vite';
+
+//icon
+import { MdAddShoppingCart } from 'react-icons/md';
 
 const AddToCartBar = ({ product }) => {
   const { addToCart } = useCart();
@@ -19,28 +24,29 @@ const AddToCartBar = ({ product }) => {
     setQuantity((q) => q + 1);
   };
 
-  const handleClick = () => {
-    addToCart(product);
-    // if (onAdded) onAdded()
-  };
+  // const handleClick = () => {
+  //   addToCart(product);
+  //   // if (onAdded) onAdded()
+  // };
+
   return (
     // <div className='mt-auto w-full h-15 bg-green-300'>add to cart bar</div>
-    <div class='flex items-center border rounded overflow-hidden mt-auto w-full h-15 pl-5'>
+    <div class='flex items-center border-gray-400 border rounded overflow-hidden mt-auto w-full h-12 pl-5'>
       <button
-        class='px-3 py-1 bg-gray-100 text-gray-700 hover:bg-gray-200'
+        className='px-3 py-1  rounded-md  bg-gray-200 text-gray-700 hover:bg-gray-200'
         onClick={decrease}>
         -
       </button>
-      <span className='px-3'>{quantity}</span>
+      <span className='px-6'>{quantity}</span>
       <button
-        class='px-3 py-1 bg-gray-100 text-gray-700 hover:bg-gray-200'
+        className='px-3 py-1  rounded-md  bg-gray-200 text-gray-700 hover:bg-gray-200'
         onClick={increase}>
         +
       </button>
       <button
-        class='bg-blue-600 text-black px-6 py-2 rounded-lg  transition m-auto'
+        className='bg-green-300 text-pink px-6 py-2 rounded-lg  transition m-auto'
         onClick={handleAdd}>
-        Add to Cart
+        <MdAddShoppingCart />
       </button>
     </div>
   );

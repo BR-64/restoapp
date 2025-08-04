@@ -23,7 +23,7 @@ const ProductCard = ({
       // onClick={onClick}>
 
       // grid
-      class=' flex flex-col border border-gray-200 h-70 sm:h-80 rounded-md items-start shadow-lg text-left'>
+      class=' flex flex-col bg-white border-gray-100 h-70 sm:h-80 rounded-md items-start shadow-lg text-left'>
       <img
         className=' w-full h-40 object-cover rounded '
         src={'http://localhost:5000/' + img}

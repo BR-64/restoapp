@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { handleCheckout } from '../utils/checkout';
+import { summaryCal } from '../utils/checkout';
+import AddAddressForm from './AddressForm';
+import AddressList from './AddressList';
 
 export default function CheckoutForm({ onClose }) {
   const { cart, setCart, setReceipt } = useCart();
@@ -9,39 +11,49 @@ export default function CheckoutForm({ onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [refresh, setRefresh] = useState(false);
 
-    if (!address.trim()) {
-      alert('Please enter a shipping address.');
-      return;
-    }
+  const handleRefresh = () => {
+    console.log('Refresh called');
+    setRefresh((prev) => !prev);
+  };
 
-    setSubmitted(true);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    // You can extend this to send address to backend here
-    handleCheckout(cart, setCart, address, setReceipt, navigate);
+  //   if (!address.trim()) {
+  //     alert('Please enter a shipping address.');
+  //     return;
+  //   }
 
-    if (onClose) onClose(); // Optional: close modal after checkout
+  //   setSubmitted(true);
+
+  //   // You can extend this to send address to backend here
+  //   handleCheckout(cart, setCart, address, setReceipt, navigate);
+
+  //   if (onClose) onClose(); // Optional: close modal after checkout
+  // };
+
+  // const handleSubmit = (e) => {
+  //   navigate('/chkoutsummary');
+  // };
+
+  const handleClick = (e) => {
+    summaryCal(cart, navigate);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className='p-4 border rounded shadow max-w-md mx-auto'>
-      <h2 className='text-xl font-bold mb-4'>📦 Shipping Info</h2>
-      <textarea
-        rows={4}
-        className='w-full border p-2 rounded mb-4'
-        placeholder='Enter your shipping address...'
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-      />
-      <button
-        type='submit'
-        className='w-full bg-green-600 text-green py-2 rounded hover:bg-green-700'>
-        Confirm & Checkout
-      </button>
-    </form>
+    <>
+      <AddressList refresh={refresh} />
+      <AddAddressForm onSubmitSuccess={handleRefresh} />
+      <div className='p-4 rounded max-w-md mx-auto m-3'>
+        <button
+          onClick={handleClick}
+          className='w-full mb-4 bg-green-300 text-green py-2 rounded hover:bg-green-400 shadow-md'>
+          Checkout Summary
+        </button>
+      </div>
+      div
+    </>
   );
 }

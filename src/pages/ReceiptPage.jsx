@@ -27,17 +27,18 @@ export default function ReceiptPage() {
 
       <div className='mb-4'>
         <h3 className='font-semibold mb-2'>Items:</h3>
-        <ul className='space-y-1'>
+        <ul className='space-y-1 text-right w-1/2 m-auto'>
           {items.map((item) => (
             <li key={item._id}>
-              {item.name} × {item.quantity} — ${item.price * item.quantity}
+              {item.name} × {item.quantity} — &nbsp;฿{' '}
+              {(item.price * item.quantity).toLocaleString(2)}
             </li>
           ))}
         </ul>
       </div>
 
       <div className='font-bold text-lg border-t pt-2 mb-4'>
-        Total: ${total.toFixed(2)}
+        Total: &nbsp;฿ {total.toLocaleString(2)}
       </div>
 
       <Link

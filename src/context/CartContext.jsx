@@ -21,14 +21,12 @@ export const CartProvider = ({ children }) => {
       const exists = prev.find((item) => item._id === product._id);
 
       if (exists) {
-        // toast.success(`${product.name} quantity increased!`);
         return prev.map((item) =>
           item._id === product._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
-        // toast.success(`${product.name} added to cart!`);
         return [...prev, { ...product, quantity: 1 }];
       }
     });
@@ -43,7 +41,13 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item._id !== id));
+    if (window.confirm('Are you sure you want to remove this item?')) {
+      setCart((prev) => prev.filter((item) => item._id !== id));
+      console.log('Product removed from Cart');
+    } else {
+      // Cancelled
+      console.log('Cancelled');
+    }
   };
 
   const updateQuantity = (id, amount) => {
