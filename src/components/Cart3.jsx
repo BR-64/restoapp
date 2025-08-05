@@ -1,11 +1,7 @@
 import { useCart } from '../context/CartContext';
-import { useState } from 'react';
-import { Trash2 } from 'lucide-react';
-import { handleCheckout } from '../utils/checkout';
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity, setCart, getTotal } = useCart();
-  const [showForm, setShowForm] = useState(false);
 
   return (
     <div className='p-4 border-gray-400 rounded shadow-md m-3 w-full max-w-lg mx-auto'>
@@ -53,14 +49,6 @@ export default function Cart() {
         <span>Total:</span>
         <span>&nbsp;฿ {getTotal().toLocaleString(2)}</span>
       </div>
-      {/* {!showForm && (
-        <button
-          onClick={() => setShowForm(true)}
-          className='w-full mb-4 bg-green-300 text-green py-2 rounded hover:bg-green-400'>
-          Proceed to Checkout
-        </button>
-      )}
-      {showForm && <CheckoutForm />} */}
     </div>
   );
 }

@@ -12,6 +12,7 @@ export default function CheckoutSummaryPage() {
 
   const location = useLocation();
   const totalPrice = location.state?.total;
+  //   const totalPrice = location.prop?.total;
 
   if (!totalPrice) return <p>No data received.</p>;
 

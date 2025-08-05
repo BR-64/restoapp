@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Trash2 } from 'lucide-react';
-import Cart from '../components/Cart3';
+// import Cart from '../components/Cart3';
+import Cart from '../components/Cart4';
 import CheckoutForm from '../components/CheckOutForm';
 
 export default function CartPage() {

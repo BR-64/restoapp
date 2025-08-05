@@ -53,7 +53,6 @@ export default function CheckoutForm({ onClose }) {
           Checkout Summary
         </button>
       </div>
-      div
     </>
   );
 }

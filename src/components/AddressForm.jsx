@@ -10,6 +10,7 @@ const AddAddressForm = ({ onSubmitSuccess }) => {
     district: '',
     sub_district: '',
     zip: '',
+    tel: '',
   });
 
   const [message, setMessage] = useState('');
@@ -43,6 +44,7 @@ const AddAddressForm = ({ onSubmitSuccess }) => {
         district: '',
         sub_district: '',
         zip: '',
+        tel: '',
       });
       //   window.location.reload();
       //   loadAddresses(); // Reload addresses after adding
@@ -70,7 +72,7 @@ const AddAddressForm = ({ onSubmitSuccess }) => {
       onSubmit={handleSubmit}
       className='max-w-md mx-auto p-4 border rounded'>
       <h2 className='text-xl mb-4 font-bold'>Add Address</h2>
-      {['house_no', 'street', 'district', 'sub_district', 'zip'].map(
+      {['house_no', 'street', 'district', 'sub_district', 'zip', 'tel'].map(
         (field) => (
           <input
             key={field}

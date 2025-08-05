@@ -31,7 +31,6 @@ const AddressList = () => {
   //   };
 
   useEffect(() => {
-    // loadAddresses();
     loadAddress();
   }, []);
 
@@ -61,6 +60,9 @@ const AddressList = () => {
               </p>
               <p>
                 <strong>Zip:</strong> {address.zip}
+              </p>
+              <p>
+                <strong>tel:</strong> {address.tel}
               </p>
             </li>
           ))}

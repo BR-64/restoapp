@@ -86,6 +86,9 @@ const AddressList = ({ refresh }) => {
               <p>
                 <strong>Zip:</strong> {address.zip}
               </p>
+              <p>
+                <strong>tel:</strong> {address.tel}
+              </p>
               <p className='text-sm text-gray-500'>
                 {address.default ? (
                   '✅ Default Address'
