@@ -3,6 +3,8 @@ import React from 'react';
 import { useCart } from '../context/CartContext';
 import AddToCartBar from '../components/AddToCartBar';
 
+import { API_URL } from '../../config';
+
 const ProductCard = ({
   img,
   name,
@@ -26,7 +28,7 @@ const ProductCard = ({
       class=' flex flex-col bg-white border-gray-100 h-70 sm:h-80 rounded-md items-start shadow-lg text-left'>
       <img
         className=' w-full h-40 object-cover rounded '
-        src={'http://localhost:5000/' + img}
+        src={`${API_URL}/` + img}
         alt=''
         onClick={onClick}
       />

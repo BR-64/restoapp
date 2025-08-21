@@ -4,6 +4,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import ForgotPassButton from '../components/ForgotPasButton.jsx';
 
+import { API_URL } from '../../config';
+
 function Login() {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
@@ -15,7 +17,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import { useCart } from '../context/CartContext';
+import { API_URL } from '../../config';
 
 export default function Cart() {
   const { cart } = useCart();
@@ -25,7 +26,7 @@ export default function Cart() {
               {cart.map((item) => (
                 <tr key={item.id} className='border-t'>
                   <td className='p-3'>
-                    <img src={'http://localhost:5000/' + item.file} />
+                    <img src={`${API_URL}/` + item.file} />
                   </td>
                   <td className='p-3'>{item.name}</td>
                   <td className='p-3 text-center'>

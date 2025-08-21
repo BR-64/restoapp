@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 // import { loadAddresses } from './AddressList';
 
 const AddAddressForm = ({ onSubmitSuccess }) => {
@@ -28,7 +29,7 @@ const AddAddressForm = ({ onSubmitSuccess }) => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/address/add', // adjust URL
+        `${API_URL}/api/address/add`, // adjust URL
         form,
         {
           headers: {

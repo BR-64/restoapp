@@ -31,6 +31,8 @@ import { CartProvider } from './context/CartContext.jsx';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   return (
     <div className='App'>

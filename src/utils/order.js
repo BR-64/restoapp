@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_URL } from '../../config';
 
 const getUserOrders = async () => {
   const token = localStorage.getItem('token');
@@ -6,7 +7,7 @@ const getUserOrders = async () => {
   console.log('Fetching user orders');
 
   try {
-    const res = await axios.get('http://localhost:5000/api/orders/user', {
+    const res = await axios.get(`${API_URL}/api/orders/user`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -1,5 +1,6 @@
 import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 
 const summaryCal = async (cart, navigate) => {
   const token = localStorage.getItem('token'); // or from cookies
@@ -15,7 +16,7 @@ const summaryCal = async (cart, navigate) => {
 
   try {
     const res = await axios.post(
-      'http://localhost:5000/api/cart/cal',
+      `${API_URL}/api/cart/cal`, // Adjust URL if needed
       {
         cartItems: cart,
       },
@@ -45,9 +46,8 @@ const handleCheckout = async (cart, setCart, setReceipt, navigate) => {
   }
 
   try {
-    // const res = await axios.post('http://localhost:5000/api/cart/cal', {
     const res = await axios.post(
-      'http://localhost:5000/api/orders',
+      `${API_URL}/api/orders`, // Adjust URL if needed
       { cartItems: cart },
       {
         headers: {

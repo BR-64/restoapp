@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../../config';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -17,10 +18,9 @@ const ForgotPassword = () => {
     console.log('mail sending');
 
     try {
-      const res = await axios.post(
-        'http://localhost:5000/api/auth/forgot-password',
-        { email }
-      );
+      const res = await axios.post(`${API_URL}/api/auth/forgot-password`, {
+        email,
+      });
       setMessage(res.data.message);
       setSent(true); // 🧠 disable button now
 

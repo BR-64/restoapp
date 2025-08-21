@@ -1,5 +1,6 @@
 import React from 'react';
 import AddToCartBar from './AddToCartBar';
+import { API_URL } from '../../config';
 
 const ItemModal = ({ item, onClose }) => {
   // if (!item) return null;
@@ -10,7 +11,7 @@ const ItemModal = ({ item, onClose }) => {
       <div className='relative flex flex-col h-[80%] bg-white rounded-lg shadow-2xl max-w-md w-85 sm:w-120 '>
         <img
           className='w-full h-[40vh] object-cover m-auto self-start mt-0 mb-0 rounded-md'
-          src={'http://localhost:5000/' + item.file}
+          src={`${API_URL}/` + item.file}
           alt=''
         />
         <div className='productinfo flex flex-col h-[30vh] pl-5 pt-3 pr-5 '>
