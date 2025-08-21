@@ -1,14 +1,10 @@
 // src/pages/Login.jsx
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext.jsx';
-import ForgotPassButton from '../components/ForgotPasButton.jsx';
 import AddAddressForm from '../components/AddressForm.jsx';
 import AddressList from '../components/AddressList.jsx';
+import OrderList from '../components/OrderList.jsx';
 
 function CustomerPage() {
-  //   const navigate = useNavigate();
-  //   const [token, setToken] = useState('');
   const [refresh, setRefresh] = useState(false);
 
   const handleRefresh = () => {
@@ -24,7 +20,13 @@ function CustomerPage() {
         <AddAddressForm onSubmitSuccess={handleRefresh} />
         <AddressList refresh={refresh} />
       </div>
-      <div>Order Component</div>
+      {/* <h3>Order History</h3> */}
+      <OrderList refresh={refresh} />
+      {/* <button
+        onClick={getorder}
+        className='bg-blue-500 text-white px-4 py-2 rounded'>
+        get orders
+      </button> */}
     </div>
   );
 }

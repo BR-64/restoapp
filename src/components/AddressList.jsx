@@ -19,10 +19,10 @@ const AddressList = ({ refresh }) => {
     console.log('load address');
     const result = await getUserAddresses();
     if (result.success) {
-      console.log('result data', result.data);
+      //   console.log('address data', result.data);
 
       setAddresses(result.data);
-      console.log('this is address', addresses);
+      //   console.log('this is address', addresses);
     } else {
       setError(result.error);
     }

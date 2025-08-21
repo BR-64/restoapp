@@ -2,6 +2,8 @@ import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
 
 const summaryCal = async (cart, navigate) => {
+  const token = localStorage.getItem('token'); // or from cookies
+
   console.log('summaryCal called with cart:', cart);
 
   // const navigate = useNavigate();
@@ -12,15 +14,24 @@ const summaryCal = async (cart, navigate) => {
   }
 
   try {
-    const res = await axios.post('http://localhost:5000/api/cart/cal', {
-      cartItems: cart,
-    });
+    const res = await axios.post(
+      'http://localhost:5000/api/cart/cal',
+      {
+        cartItems: cart,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     console.log(res.data.totalPrice);
     navigate('/chkoutsummary', { state: { total: res.data.totalPrice } });
     // navigate('/chkoutsummary', { prop: { total: res.data.totalPrice } });
   } catch (err) {
     console.error(err);
-    alert('Failed to cal price');
+    // alert('Failed to cal price');
+    throw new Error(err.response?.data?.message || 'Something went wrong');
   }
 };
 
@@ -67,8 +78,11 @@ const handleCheckout = async (cart, setCart, setReceipt, navigate) => {
     setCart([]);
     localStorage.removeItem('cart');
 
-    // Navigate to receipt page
-    navigate('/receipt');
+    console.log('res after order created', res);
+    console.log(res.data);
+
+    // Navigate to order submitted page
+    navigate('/ordersubmitted', { state: { order: res.data.order } });
   } catch (err) {
     console.error(err);
     alert('Failed to place order');

@@ -14,7 +14,7 @@ const getUserAddresses = async () => {
       },
     });
 
-    console.log('User Addresses:', res.data.addresses);
+    // console.log('User Addresses:', res.data.addresses);
     return { success: true, data: res.data.addresses };
   } catch (err) {
     console.error('Error fetching addresses:', err);

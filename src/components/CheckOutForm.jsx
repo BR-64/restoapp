@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { summaryCal } from '../utils/checkout';
@@ -6,10 +6,11 @@ import AddAddressForm from './AddressForm';
 import AddressList from './AddressList';
 
 export default function CheckoutForm({ onClose }) {
+  const [error, setError] = useState('');
   const { cart, setCart, setReceipt } = useCart();
-  const [address, setAddress] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
+  // const [address, setAddress] = useState('');
+  // const [submitted, setSubmitted] = useState(false);
 
   const [refresh, setRefresh] = useState(false);
 
@@ -38,9 +39,18 @@ export default function CheckoutForm({ onClose }) {
   //   navigate('/chkoutsummary');
   // };
 
-  const handleClick = (e) => {
-    summaryCal(cart, navigate);
+  const handleClick = async (e) => {
+    try {
+      await summaryCal(cart, navigate);
+    } catch (err) {
+      setError(err.message || 'Something went wrong');
+      // console.log('this is error', error);
+    }
   };
+
+  useEffect(() => {
+    setError('');
+  }, [refresh]);
 
   return (
     <>
@@ -52,6 +62,12 @@ export default function CheckoutForm({ onClose }) {
           className='w-full mb-4 bg-green-300 text-green py-2 rounded hover:bg-green-400 shadow-md'>
           Checkout Summary
         </button>
+        {error && (
+          <p style={{ color: 'red' }}>
+            {error} <br />
+            Please add address
+          </p>
+        )}
       </div>
     </>
   );

@@ -31,7 +31,7 @@ const NavbarRes = () => {
           <div className='hidden md:flex items-center space-x-4'>
             {!isLoggedIn && (
               <Link to='/login' className='hover:text-gray-300'>
-                Login
+                Login / Sign Up
               </Link>
             )}
             <Link to='/' className='hover:text-gray-300'>
@@ -39,6 +39,9 @@ const NavbarRes = () => {
             </Link>
             <Link to='/products' className='hover:text-gray-300'>
               Product List
+            </Link>
+            <Link to='/customer' className='hover:text-gray-300'>
+              Account
             </Link>
             <Link to='/cart'>
               <FiShoppingCart size={24} />
@@ -97,7 +100,7 @@ const NavbarRes = () => {
         <div className='flex flex-col md:hidden px-4 pb-4 space-y-2'>
           {!isLoggedIn && (
             <Link to='/login' className='hover:text-gray-300'>
-              Login
+              Login / Sign Up
             </Link>
           )}
           <Link to='/' className='hover:text-gray-300'>

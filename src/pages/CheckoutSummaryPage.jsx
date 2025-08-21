@@ -16,7 +16,7 @@ export default function CheckoutSummaryPage() {
 
   if (!totalPrice) return <p>No data received.</p>;
 
-  const handleSubmit = (e) => {
+  const handleClick = (e) => {
     setSubmitted(true);
 
     // You can extend this to send address to backend here
@@ -31,7 +31,7 @@ export default function CheckoutSummaryPage() {
       <CartSummary totalfrombackend={totalPrice} />
       <AddressSummary />
       <button
-        onClick={handleSubmit}
+        onClick={handleClick}
         className='w-full mb-4 bg-green-300 text-green py-2 rounded hover:bg-green-400 shadow-md'>
         Place Order
       </button>

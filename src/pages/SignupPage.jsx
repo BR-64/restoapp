@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Signup() {
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [cfmPassword, setcfmPassword] = useState('');
   const [error, setError] = useState('');
@@ -27,7 +28,7 @@ function Signup() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, username }),
       });
 
       const res = await response.json();
@@ -58,6 +59,16 @@ function Signup() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder='Email'
+              required
+            />
+          </div>
+          <div>
+            <input
+              type='text'
+              className='w-full mt-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder='username'
               required
             />
           </div>

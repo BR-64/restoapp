@@ -1,6 +1,6 @@
 // src/pages/Login.jsx
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import ForgotPassButton from '../components/ForgotPasButton.jsx';
 
@@ -77,6 +77,11 @@ function Login() {
           </button>
           <ForgotPassButton />
         </form>
+        <Link to='/signup'>
+          <button className='w-full mt-3 py-2 font-semibold rounded-lg shadow-sm transition duration-200'>
+            Sign Up for new user
+          </button>
+        </Link>
       </div>
     </div>
   );

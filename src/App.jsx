@@ -21,6 +21,7 @@ import CartPage from './pages/CartPage.jsx';
 import ReceiptPage from './pages/ReceiptPage.jsx';
 import CustomerPage from './pages/CustomerPage.jsx';
 import CheckoutSummaryPage from './pages/CheckoutSummaryPage.jsx';
+import OrderSubmittedPage from './pages/OrderSubmittedPage.jsx';
 
 //context
 import { AuthProvider } from './context/AuthContext.jsx';
@@ -57,6 +58,7 @@ function App() {
               {/* // checkout step pages*/}
               <Route path='/cart' element={<CartPage />} />
               <Route path='/chkoutsummary' element={<CheckoutSummaryPage />} />
+              <Route path='/ordersubmitted' element={<OrderSubmittedPage />} />
               <Route path='/receipt' element={<ReceiptPage />} />
             </Routes>
           </Router>
