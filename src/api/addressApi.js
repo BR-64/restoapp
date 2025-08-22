@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_URL } from '../../config';
 
 // const token = localStorage.getItem('token');
 
@@ -8,7 +9,7 @@ const getUserAddresses = async () => {
   console.log(token);
 
   try {
-    const res = await axios.get('http://localhost:5000/api/address', {
+    const res = await axios.get(`${API_URL}/api/address`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
