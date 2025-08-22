@@ -30,7 +30,7 @@ const setDefaultAddress = async (addressId) => {
 
   try {
     const res = await axios.put(
-      `http://localhost:5000/api/address/default/${addressId}`,
+      `${API_URL}/api/address/default/${addressId}`,
       null,
       {
         headers: {
@@ -53,7 +53,7 @@ const deleteAddress = async (addressId) => {
 
   try {
     const res = await axios.delete(
-      `http://localhost:5000/api/address/delete/${addressId}`,
+      `${API_URL}/api/address/delete/${addressId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -74,14 +74,11 @@ const getDefaultAddress = async () => {
   const token = localStorage.getItem('token');
 
   try {
-    const res = await axios.get(
-      'http://localhost:5000/api/address/default_address',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const res = await axios.get(`${API_URL}/api/address/default_address`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return { success: true, data: res.data.address };
   } catch (err) {
