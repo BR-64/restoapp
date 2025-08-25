@@ -22,6 +22,7 @@ import ReceiptPage from './pages/ReceiptPage.jsx';
 import CustomerPage from './pages/CustomerPage.jsx';
 import CheckoutSummaryPage from './pages/CheckoutSummaryPage.jsx';
 import OrderSubmittedPage from './pages/OrderSubmittedPage.jsx';
+import LiffLoginPage from './components/LiffLogin.jsx';
 
 //context
 import { AuthProvider } from './context/AuthContext.jsx';
@@ -44,6 +45,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/login' element={<LoginPage />} />
+              <Route path='/lifflogin' element={<LiffLoginPage />} />
               <Route path='/signup' element={<SignupPage />} />
               <Route path='/admin/signup' element={<SignupPageAdmin />} />
               <Route path='/forgotpass' element={<ForgotPassPage />} />

@@ -37,11 +37,11 @@ const NavbarRes = () => {
             <Link to='/' className='hover:text-gray-300'>
               Home
             </Link>
-            <Link to='/products' className='hover:text-gray-300'>
-              Product List
-            </Link>
             <Link to='/customer' className='hover:text-gray-300'>
               Account
+            </Link>
+            <Link to='/products' className='hover:text-gray-300'>
+              Product List
             </Link>
             <Link to='/cart'>
               <FiShoppingCart size={24} />
@@ -56,7 +56,16 @@ const NavbarRes = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className='flex items-center md:hidden'>
+          <div className='flex items-center justify-between md:hidden w-16'>
+            <Link to='/cart'>
+              <FiShoppingCart size={24} />
+              {/* Optional: show cart count */}
+              {cart?.length > 0 && (
+                <span className='relative -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full'>
+                  {cart.length}
+                </span>
+              )}
+            </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className='text-gray-600 hover:text-blue-600 focus:outline-none'
@@ -77,18 +86,20 @@ const NavbarRes = () => {
                 </svg>
               ) : (
                 // Hamburger icon
-                <svg
-                  className='w-6 h-6'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth='2'
-                  viewBox='0 0 24 24'
-                  xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M4 6h16M4 12h16M4 18h16'></path>
-                </svg>
+                <>
+                  <svg
+                    className='w-6 h-6'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='2'
+                    viewBox='0 0 24 24'
+                    xmlns='http://www.w3.org/2000/svg'>
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      d='M4 6h16M4 12h16M4 18h16'></path>
+                  </svg>
+                </>
               )}
             </button>
           </div>
@@ -106,9 +117,13 @@ const NavbarRes = () => {
           <Link to='/' className='hover:text-gray-300'>
             Home
           </Link>
-          <Link to='/products' className='hover:text-gray-300'>
+          <Link to='/customer' className='hover:text-gray-300'>
+            Account
+          </Link>
+          <Link to='/products' className='hover:text-gray-300 mb-4'>
             Product List
           </Link>
+
           <LogoutButton />
         </div>
       )}
