@@ -10,7 +10,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 
 const NavbarRes = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const { cart } = useCart();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +34,7 @@ const NavbarRes = () => {
                 Login / Sign Up
               </Link>
             )}
+            <span>{user.displayName}</span>
             <Link to='/' className='hover:text-gray-300'>
               Home
             </Link>

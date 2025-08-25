@@ -22,7 +22,8 @@ export default function LiffLogin() {
 
       // Send to backend
       const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/line`,
+        // `${import.meta.env.VITE_API_URL}/api/auth/line`,
+        `${import.meta.env.VITE_API_URL}/api/auth/liff-login`,
         { idToken },
         { withCredentials: true }
       );
