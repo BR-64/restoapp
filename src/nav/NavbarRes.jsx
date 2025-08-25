@@ -67,6 +67,16 @@ const NavbarRes = () => {
 
           {/* Mobile menu button */}
           <div className='flex items-center justify-between md:hidden w-16'>
+            {user && (
+              <div className='flex items-center gap-2'>
+                <img
+                  src={user.pictureUrl}
+                  alt='profile'
+                  className='w-8 h-8 rounded-full'
+                />
+                <span>{user.displayName}</span>
+              </div>
+            )}
             <Link to='/cart'>
               <FiShoppingCart size={24} />
               {/* Optional: show cart count */}
