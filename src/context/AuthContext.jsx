@@ -14,21 +14,21 @@ export const AuthProvider = ({ children }) => {
 
   // On first load, check token
   useEffect(() => {
-    const initLiff = async () => {
-      try {
-        await liff.init({ liffId: import.meta.env.VITE_LIFF_ID });
-        if (!liff.isLoggedIn()) {
-          liff.login();
-        } else {
-          const profile = await liff.getProfile();
-          setUser(profile);
-        }
-      } catch (err) {
-        console.error('LIFF init error:', err);
-      }
-    };
+    // const initLiff = async () => {
+    //   try {
+    //     await liff.init({ liffId: import.meta.env.VITE_LIFF_ID });
+    //     if (!liff.isLoggedIn()) {
+    //       liff.login();
+    //     } else {
+    //       const profile = await liff.getProfile();
+    //       setUser(profile);
+    //     }
+    //   } catch (err) {
+    //     console.error('LIFF init error:', err);
+    //   }
+    // };
 
-    initLiff();
+    // initLiff();
 
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);

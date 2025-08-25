@@ -66,7 +66,7 @@ const NavbarRes = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className='flex items-center justify-between md:hidden w-16'>
+          <div className='flex items-center justify-between md:hidden w-[50%]'>
             {user && (
               <div className='flex items-center gap-2'>
                 <img
