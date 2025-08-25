@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import liff from '@line/liff';
 
 // Create the context
 const AuthContext = createContext();
@@ -9,6 +10,7 @@ export const useAuth = () => useContext(AuthContext);
 // Provider component
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
   // On first load, check token
   useEffect(() => {

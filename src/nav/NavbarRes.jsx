@@ -34,7 +34,16 @@ const NavbarRes = () => {
                 Login / Sign Up
               </Link>
             )}
-            <span>{user.displayName}</span>
+            {user && (
+              <div className='flex items-center gap-2'>
+                <img
+                  src={user.pictureUrl}
+                  alt='profile'
+                  className='w-8 h-8 rounded-full'
+                />
+                <span>{user.displayName}</span>
+              </div>
+            )}
             <Link to='/' className='hover:text-gray-300'>
               Home
             </Link>
