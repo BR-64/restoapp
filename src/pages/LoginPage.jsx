@@ -2,16 +2,18 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
+import { useCart } from '../context/CartContext.jsx';
 import ForgotPassButton from '../components/ForgotPasButton.jsx';
 
 import { API_URL } from '../../config';
 
 function Login() {
-  const { login } = useAuth();
+  const { login, initLiff } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [token, setToken] = useState('');
+  const { cart } = useCart();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,7 +36,14 @@ function Login() {
         login(res.token);
 
         alert('Login successful!');
-        navigate('/');
+
+        if (cart.length !== 0) {
+          // If product already in cart → go to cart
+          navigate('/cart');
+        } else {
+          // If product not in cart → go to checkout
+          navigate(`/`);
+        }
       } else {
         alert(res.message || 'Login failed');
       }
@@ -71,7 +80,6 @@ function Login() {
               required
             />
           </div>
-
           <button
             type='submit'
             className='w-full py-2 font-semibold rounded-lg shadow-sm transition duration-200'>
@@ -82,6 +90,11 @@ function Login() {
         <Link to='/signup'>
           <button className='w-full mt-3 py-2 font-semibold rounded-lg shadow-sm transition duration-200'>
             Sign Up for new user
+          </button>
+          <button
+            className='w-full py-2 mt-7 font-semibold rounded-lg shadow-sm transition duration-200 bg-green-400'
+            onClick={initLiff}>
+            Login with LINE
           </button>
         </Link>
       </div>

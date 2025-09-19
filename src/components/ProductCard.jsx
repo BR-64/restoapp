@@ -29,6 +29,7 @@ const ProductCard = ({
       <img
         className=' w-full h-40 object-cover rounded '
         src={`${API_URL}/` + img}
+        // src={`.../` + img}
         alt=''
         onClick={onClick}
       />

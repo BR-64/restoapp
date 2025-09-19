@@ -47,9 +47,11 @@ const NavbarRes = () => {
             <Link to='/' className='hover:text-gray-300'>
               Home
             </Link>
-            <Link to='/customer' className='hover:text-gray-300'>
-              Account
-            </Link>
+            {isLoggedIn && (
+              <Link to='/customer' className='hover:text-gray-300'>
+                Account
+              </Link>
+            )}
             <Link to='/products' className='hover:text-gray-300'>
               Product List
             </Link>
@@ -137,9 +139,11 @@ const NavbarRes = () => {
           <Link to='/' className='hover:text-gray-300'>
             Home
           </Link>
-          <Link to='/customer' className='hover:text-gray-300'>
-            Account
-          </Link>
+          {isLoggedIn && (
+            <Link to='/customer' className='hover:text-gray-300'>
+              Account
+            </Link>
+          )}
           <Link to='/products' className='hover:text-gray-300 mb-4'>
             Product List
           </Link>

@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { summaryCal } from '../utils/checkout';
 import AddAddressForm from './AddressForm';
 import AddressList from './AddressList';
+import LoginToOrder from './LoginToOrder';
 
 export default function CheckoutForm({ onClose }) {
   const [error, setError] = useState('');
   const { cart, setCart, setReceipt } = useCart();
   const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+
   // const [address, setAddress] = useState('');
   // const [submitted, setSubmitted] = useState(false);
 
@@ -54,21 +58,26 @@ export default function CheckoutForm({ onClose }) {
 
   return (
     <>
-      <AddressList refresh={refresh} />
-      <AddAddressForm onSubmitSuccess={handleRefresh} />
-      <div className='p-4 rounded max-w-md mx-auto m-3'>
-        <button
-          onClick={handleClick}
-          className='w-full mb-4 bg-green-300 text-green py-2 rounded hover:bg-green-400 shadow-md'>
-          Checkout Summary
-        </button>
-        {error && (
-          <p style={{ color: 'red' }}>
-            {error} <br />
-            Please add address
-          </p>
-        )}
-      </div>
+      <LoginToOrder />
+      {isLoggedIn && (
+        <>
+          <AddressList refresh={refresh} />
+          <AddAddressForm onSubmitSuccess={handleRefresh} />
+          <div className='p-4 rounded max-w-md mx-auto m-3'>
+            <button
+              onClick={handleClick}
+              className='w-full mb-4 bg-green-300 text-green py-2 rounded hover:bg-green-400 shadow-md'>
+              Checkout Summary
+            </button>
+            {error && (
+              <p style={{ color: 'red' }}>
+                {error} <br />
+                Please add address
+              </p>
+            )}
+          </div>
+        </>
+      )}
     </>
   );
 }
