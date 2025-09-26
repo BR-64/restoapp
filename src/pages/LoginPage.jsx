@@ -91,9 +91,9 @@ function Login() {
           <button className='w-full mt-3 py-2 font-semibold rounded-lg shadow-sm transition duration-200'>
             Sign Up for new user
           </button>
-          <button
-            className='w-full py-2 mt-7 font-semibold rounded-lg shadow-sm transition duration-200 bg-green-400'
-            onClick={initLiff}>
+        </Link>
+        <Link to='/liff-redirect'>
+          <button className='w-full py-2 mt-7 font-semibold rounded-lg shadow-sm transition duration-200 bg-green-400'>
             Login with LINE
           </button>
         </Link>

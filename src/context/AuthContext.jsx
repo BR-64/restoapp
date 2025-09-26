@@ -14,97 +14,32 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState('');
 
-  // On first load, check token
-  // useEffect(() => {
-  //   // liff version
-  //   // const initLiff = async () => {
-  //   //   try {
-  //   //     await liff.init({ liffId: import.meta.env.VITE_LIFF_ID });
-  //   //     if (!liff.isLoggedIn()) {
-  //   //       liff.login();
-  //   //     } else {
-  //   //       const profile = await liff.getProfile();
-  //   //       setUser(profile);
-
-  //   //       // ✅ Send ID token to backend
-  //   //       const idToken = liff.getIDToken();
-
-  //   //       const res = await axios.post(
-  //   //         `${import.meta.env.VITE_API_URL}/api/auth/liff-login`,
-  //   //         { idToken },
-  //   //         { withCredentials: true }
-  //   //       );
-
-  //   //       const data = res.data;
-
-  //   //       setToken(data.token);
-  //   //       localStorage.setItem('token', data.token); // persist session
-  //   //     }
-  //   //   } catch (err) {
-  //   //     console.error('LIFF init error:', err);
-  //   //   }
-  //   // };
-
-  //   // liff hybird version
-  //   const initLiff = async () => {
-  //     try {
-  //       await liff.init({ liffId: import.meta.env.VITE_LIFF_ID });
-  //       if (!liff.isLoggedIn()) {
-  //         liff.login();
-  //         return;
-  //       }
-
-  //       const profile = await liff.getProfile();
-  //       console.log(profile);
-  //       setUser(profile);
-
-  //       // Send userId to backend
-  //       const res = await axios.post(
-  //         `${import.meta.env.VITE_API_URL}/api/auth/liff-login`,
-  //         {
-  //           lineId: profile.userId,
-  //           displayName: profile.displayName,
-  //           profilePic: profile.pictureUrl,
-  //         }, // ✅ no idToken needed
-  //         { withCredentials: true }
-  //       );
-
-  //       const data = res.data;
-  //       setToken(data.token);
-  //       localStorage.setItem('token', data.token); // persist session
-  //       console.log('token set');
-  //       setIsLoggedIn(true);
-  //     } catch (err) {
-  //       console.error('LIFF init error:', err.response?.data || err.message);
-  //     }
-  //   };
-
-  //   initLiff();
-
-  //   const token = localStorage.getItem('token');
-  //   setIsLoggedIn(!!token);
-  // }, []);
-
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
+
     if (storedToken) {
-      setIsLoggedIn(true);
       setToken(storedToken);
+      setIsLoggedIn(true);
+    } else {
+      //try liff login
+      // initLiff();
     }
   }, []);
 
-  // Login function
-  const login = (token) => {
+  // Login function (used for both email and LIFF)
+  const login = (token, userData = null) => {
     localStorage.setItem('token', token);
+    setToken(token);
     setIsLoggedIn(true);
+    if (userData) setUser(userData);
   };
 
   // Logout function
   const logout = () => {
     localStorage.removeItem('token');
-    setIsLoggedIn(false);
-    setUser(null);
     setToken(null);
+    setUser(null);
+    setIsLoggedIn(false);
 
     // also logout from LIFF if still logged in
     if (liff.isLoggedIn()) {
@@ -116,6 +51,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await liff.init({ liffId: import.meta.env.VITE_LIFF_ID });
 
+      // Force login if not logged in
       if (!liff.isLoggedIn()) {
         liff.login();
         return;
@@ -123,7 +59,10 @@ export const AuthProvider = ({ children }) => {
 
       const profile = await liff.getProfile();
 
-      // Send profile to backend
+      console.log(profile);
+      setUser(profile);
+
+      // Send userId to backend
       const res = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/auth/liff-login`,
         {
@@ -135,10 +74,10 @@ export const AuthProvider = ({ children }) => {
       );
 
       const data = res.data;
-
-      // ✅ Use login() so state + storage stay in sync
-      login(data.token, profile);
-      console.log('LIFF login success, token set');
+      setToken(data.token);
+      localStorage.setItem('token', data.token); // persist session
+      console.log('token set');
+      setIsLoggedIn(true);
     } catch (err) {
       console.error('LIFF init error:', err.response?.data || err.message);
     }

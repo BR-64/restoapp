@@ -24,6 +24,8 @@ import CheckoutSummaryPage from './pages/CheckoutSummaryPage.jsx';
 import OrderSubmittedPage from './pages/OrderSubmittedPage.jsx';
 // import LiffLoginPage from './components/LiffLogin.jsx';
 import LiffLoginPage from './components/LiffLogin_hybrid.jsx';
+import LiffRedirect from './pages/LiffRedirect.jsx';
+import TestLiff from './pages/TestLiff.jsx';
 
 //context
 import { AuthProvider } from './context/AuthContext.jsx';
@@ -48,6 +50,15 @@ function App() {
           <Router>
             <NavbarRes />
             <Routes>
+              <Route path='/test-liff' element={<TestLiff />} />
+              <Route
+                path='/liff-redirect'
+                element={
+                  <PublicRoute>
+                    <LiffRedirect />
+                  </PublicRoute>
+                }
+              />
               <Route path='/' element={<HomePage />} />
               <Route
                 path='/login'

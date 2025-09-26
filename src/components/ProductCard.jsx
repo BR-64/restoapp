@@ -28,7 +28,8 @@ const ProductCard = ({
       class=' flex flex-col bg-white border-gray-100 h-70 sm:h-80 rounded-md items-start shadow-lg text-left'>
       <img
         className=' w-full h-40 object-cover rounded '
-        src={`${API_URL}/` + img}
+        src={img}
+        // src={`${API_URL}/image/` + img}
         // src={`.../` + img}
         alt=''
         onClick={onClick}
